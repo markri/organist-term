@@ -1,0 +1,11 @@
+{
+  "port" : 8080,
+  "dbhost" : "localhost",
+  "dbname" : "organist",
+  "dbuser" : "root",
+  "dbpassword" : "vagrant",
+  "table" : "CommandLog",
+  "idField": "id",
+  "commandField" : "command",
+  "logField": "log"
+}

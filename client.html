@@ -1,0 +1,39 @@
+<!doctype html>
+<script src="/socket.io/socket.io.js"></script>
+<script src="term.js"></script>
+<script>
+    ;(function() {
+        window.onload = function() {
+            var socket = io.connect('{{proto}}://{{hostname}}:{{port}}/{{command_name}}');
+
+            socket.on('connect', function() {
+
+                var term = new Terminal({
+                    cols: 120,
+                    rows: 40,
+                    useStyle: true,
+                    screenKeys: true,
+                    cursorBlink: false
+                });
+
+                term.on('data', function(data) {
+                    socket.emit('data', data);
+                });
+
+                term.on('title', function(title) {
+                    document.title = title;
+                });
+
+                term.open(document.body);
+
+                socket.on('data', function(data) {
+                    term.write(data);
+                });
+
+                socket.on('disconnect', function() {
+                    term.destroy();
+                });
+            });
+        };
+    }).call(this);
+</script>
