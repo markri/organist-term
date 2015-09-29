@@ -15,6 +15,13 @@ Key Features
  - Multiple monitoring instances supported (multiple users can view same execution) 
 
 
+Installation
+============
+
+Clone repository and do:
+
+    npm install
+
  
 Configuration
 =============
@@ -46,13 +53,6 @@ Parameters:
  - commandField: column name for the command (varchar(255) / text)
  - logField: column name where output is stored (text)
 
-
-Installation
-============
-
-Clone repository and do:
-
-    npm install
 
 Screenshot
 ==========
