@@ -55,4 +55,4 @@ Clone repository and do:
 Screenshot
 ==========
 
-    ![alt tag](https://raw.github.com/markri/browser-terminal/master/terminal.png)
+![alt tag](https://raw.github.com/markri/browser-terminal/master/terminal.png)
