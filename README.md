@@ -3,7 +3,7 @@ Browser Terminal
 
 Browser Terminal (written in node.js) can be used in any web application where you need a real-time terminal in the browser to monitor 
 execution of some shell command. Typical workflow would be to ask the user for some parameters, which will result in a command that is 
-stored in MySQL after which the user will be redirected to the exection page which contains this terminal.
+stored in MySQL after which the user will be redirected to the exection page which will show the realtime exection
 
  
 Key Features
@@ -34,15 +34,17 @@ There is a configuration file in the root ``config.json``. Default configuration
     }
 
 
-port: on which port the node application is running
-dbhost: MySQL host
-dbname: MySQL database
-dbuser: MySQL user
-dbpassword: MySQL password
-table: MySQL table which provides commands to be executed and where output is stored
-idField: primary key column name for command table (int)
-commandField: column name for the command (varchar(255) / text)
-logField: column name where output is stored (text)
+Parameters:
+
+ - port: on which port the node application is running
+ - dbhost: MySQL host
+ - dbname: MySQL database
+ - dbuser: MySQL user
+ - dbpassword: MySQL password
+ - table: MySQL table which provides commands to be executed and where output is stored
+ - idField: primary key column name for command table (int)
+ - commandField: column name for the command (varchar(255) / text)
+ - logField: column name where output is stored (text)
 
 
 Installation
