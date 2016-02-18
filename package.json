@@ -1,6 +1,6 @@
 {
   "name": "organist-term",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Read only terminal in browser. Command provision from MySQL, logs stored in same table",
   "main": "server.js",
   "dependencies": {
@@ -8,7 +8,9 @@
     "socket.io": "1.3.7",
     "express": "4.13.3",
     "pty.js": "0.3.0",
-    "mysql": "2.9.0"
+    "mysql": "2.9.0",
+    "http": "0.0.0",
+    "fs": "0.0.2"
   },
   "devDependencies": {},
   "scripts": {
@@ -31,5 +33,16 @@
     "command logging"
   ],
   "author": "M. de Krijger",
-  "license": "MIT"
+  "license": "MIT",
+  "config": {
+    "port": 8080,
+    "dbhost": "localhost",
+    "dbname": "organist",
+    "dbuser": "root",
+    "dbpassword": "vagrant",
+    "table": "CommandLog",
+    "idField": "id",
+    "commandField": "command",
+    "logField": "log"
+  }
 }

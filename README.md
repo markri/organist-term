@@ -1,32 +1,38 @@
-Browser Terminal
-================
+Organist Terminal
+=================
 
-Browser Terminal (written in node.js) can be used in any web application where you need a real-time terminal in the browser to monitor 
-execution of some shell command. Typical workflow would be to ask the user for some parameters, which will result in a command that is 
-stored in MySQL after which the user will be redirected to the exection page which will show the realtime exection
+Organist Terminal (organist-term) is written in node.js and can be used in any web
+application where you need a real-time terminal in the browser to monitor execution
+of some shell command. Typical workflow would be to ask the user for some parameters,
+which will result in a command that is stored in MySQL after which the user will be
+redirected to the exection page which will show the realtime exection.
 
- 
+Its use case is very specific for the Organist deployment tool, but should be usable
+on its own.
+
+
 Key Features
 ============
 
  - Read only terminal, except for the Ctrl-C signal which will abort execution
  - Command provisioned from MySQL
  - Output log is stored in MySQL
- - Multiple monitoring instances supported (multiple users can view same execution) 
+ - Multiple monitoring instances supported (multiple users can view same execution)
 
 
 Installation
 ============
 
-Clone repository and do:
+    npm install organist-term
 
-    npm install
 
- 
 Configuration
 =============
 
-There is a configuration file in the root ``config.json``. Default configuration is
+Default configuration is stored in ``package.json``. And can be overwritten by using the default
+configuration override method which is described at https://docs.npmjs.com/misc/scripts#special-packagejson-config-object.
+
+Default values:
 
     {
       "port" : 8080,
@@ -41,7 +47,7 @@ There is a configuration file in the root ``config.json``. Default configuration
     }
 
 
-Parameters:
+Description:
 
  - port: on which port the node application is running
  - dbhost: MySQL host
@@ -57,4 +63,4 @@ Parameters:
 Screenshot
 ==========
 
-![alt tag](https://raw.github.com/markri/browser-terminal/master/terminal.png)
+![alt tag](https://raw.github.com/markri/organist-term/master/terminal.png)

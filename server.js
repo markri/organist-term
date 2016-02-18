@@ -17,7 +17,7 @@ var terms = [];
 var dumpStream;
 var logs = [];
 
-var config = require('./config.json');
+//var config = require('./package.json');
 var debug = false;
 
 process.title = 'term.js';
@@ -54,7 +54,7 @@ app.use(terminal.middleware());
 
 
 // Set port
-server.listen(config.port);
+server.listen(process.env.npm_package_config_port);
 
 
 // Disable logging
@@ -82,7 +82,7 @@ app.get('/cmd_:commandid', function(req, res) {
         var clientHtml = data;
         clientHtml = clientHtml.replace('{{command_name}}', commandName );
         clientHtml = clientHtml.replace('{{hostname}}', req.hostname );
-        clientHtml = clientHtml.replace('{{port}}', config.port );
+        clientHtml = clientHtml.replace('{{port}}', process.env.npm_package_config_port );
         clientHtml = clientHtml.replace('{{proto}}', req.protocol );
         res.send(clientHtml);
     });
@@ -181,16 +181,16 @@ function saveOutput(commandId, output)
     var mysql = require('mysql');
 
     var connection = mysql.createConnection({
-        host     : config.dbhost,
-        user     : config.dbuser,
-        password : config.dbpassword,
-        database : config.dbname
+        host     : process.env.npm_package_config_dbhost,
+        user     : process.env.npm_package_config_dbuser,
+        password : process.env.npm_package_config_dbpassword,
+        database : process.env.npm_package_config_dbname
     });
 
     connection.query(
-        'UPDATE ' + config.table +
-        ' SET ' + config.logField + ' = "' + connection.escape(output) + '"' +
-        ' WHERE ' + config.idField + ' = ' + connection.escape(commandId),
+        'UPDATE ' + process.env.npm_package_config_table +
+        ' SET ' + process.env.npm_package_config_logField + ' = "' + connection.escape(output) + '"' +
+        ' WHERE ' + process.env.npm_package_config_idField + ' = ' + connection.escape(commandId),
         function(err, rows) {
 
         if (err) {
@@ -207,13 +207,13 @@ function executeCommand(term, commandId){
     var mysql = require('mysql');
 
     var connection = mysql.createConnection({
-        host     : config.dbhost,
-        user     : config.dbuser,
-        password : config.dbpassword,
-        database : config.dbname
+        host     : process.env.npm_package_config_dbhost,
+        user     : process.env.npm_package_config_dbuser,
+        password : process.env.npm_package_config_dbpassword,
+        database : process.env.npm_package_config_dbname
     });
 
-    connection.query('SELECT * FROM ' + config.table + ' WHERE ' + config.idField + ' = ' + connection.escape(commandId), function(err, rows) {
+    connection.query('SELECT * FROM ' + process.env.npm_package_config_table + ' WHERE ' + process.env.npm_package_config_idField + ' = ' + connection.escape(commandId), function(err, rows) {
 
         if (err) {
             if (debug) {
@@ -229,7 +229,7 @@ function executeCommand(term, commandId){
             return;
         }
 
-        term.write(rows[0][config.commandField]);
+        term.write(rows[0][process.env.npm_package_config_commandField]);
         term.write('\u000D'); // carriage return to execute command
 
     });
