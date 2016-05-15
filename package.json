@@ -1,6 +1,6 @@
 {
   "name": "organist-term",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Read only terminal in browser. Command provision from MySQL, logs stored in same table",
   "main": "server.js",
   "dependencies": {

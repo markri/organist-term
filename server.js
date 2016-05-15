@@ -16,6 +16,7 @@ var commandIds = [];
 var terms = [];
 var dumpStream;
 var logs = [];
+var allowInput = false;
 
 //var config = require('./package.json');
 var debug = false;
@@ -28,6 +29,10 @@ if (process.argv.indexOf('--dump') >= 0) {
 
 if (process.argv.indexOf('--debug') >= 0) {
     debug = true;
+}
+
+if (process.argv.indexOf('--allow-input') >= 0) {
+    allowInput = true;
 }
 
 // Create express app
@@ -137,9 +142,11 @@ function createTerm(commandId, socket, nsp) {
         return nsp.emit('data', data);
     });
 
-    // only allow CTRL-C as input
+    // only allow CTRL-C as input, and other data when enabled
     socket.on('data', function (data) {
         if (data === '\u0003') {
+            term.write(data);
+        } else if (allowInput) {
             term.write(data);
         }
     });
