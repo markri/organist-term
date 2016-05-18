@@ -43,6 +43,7 @@
     "table": "CommandLog",
     "idField": "id",
     "commandField": "command",
+    "dateField": "datetimeend",
     "logField": "log"
   }
 }

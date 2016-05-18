@@ -43,6 +43,7 @@ Default values:
       "table" : "CommandLog",
       "idField": "id",
       "commandField" : "command",
+      "dateField": "datetimeend",
       "logField": "log"
     }
 
@@ -57,6 +58,7 @@ Description:
  - table: MySQL table which provides commands to be executed and where output is stored
  - idField: primary key column name for command table (int)
  - commandField: column name for the command (varchar(255) / text)
+ - dateField: column name for the timestamp when command is finished
  - logField: column name where output is stored (text)
 
 

@@ -196,7 +196,8 @@ function saveOutput(commandId, output)
 
     connection.query(
         'UPDATE ' + process.env.npm_package_config_table +
-        ' SET ' + process.env.npm_package_config_logField + ' = "' + connection.escape(output) + '"' +
+        ' SET ' + process.env.npm_package_config_logField + ' = "' + connection.escape(output) + '", ' +
+        process.env.npm_package_config_dateField + ' = NOW()' +
         ' WHERE ' + process.env.npm_package_config_idField + ' = ' + connection.escape(commandId),
         function(err, rows) {
 
